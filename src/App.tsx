@@ -26,13 +26,9 @@ function App() {
     }, [notesState])
 
 
-    function addNewNote() {
-        dispatch(addNoteAction())
-    }
-
     return <Box width={'100%'} height={'100vh'} overflow={"hidden"}>
         <Button
-            onClick={addNewNote}
+            onClick={() => dispatch(addNoteAction())}
             variant={"outlined"}
                 sx={{
                     position: 'absolute',
