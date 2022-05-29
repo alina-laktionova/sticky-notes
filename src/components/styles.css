@@ -1,0 +1,10 @@
+.sticker-text {
+    resize: none;
+    height: 100%;
+    width: 100%;
+    border: none;
+    background-color: inherit;
+}
+.sticker-text:focus-visible {
+    outline: none;
+}
