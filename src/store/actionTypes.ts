@@ -14,3 +14,4 @@ export const EDIT_TEXT = 'Edit text'
 
 export const RESIZE_NOTE = 'Resize note'
 export const DRAG_NOTE = 'Drag note'
+export const SHOW_OVER_NOTES = 'Show over other notes'

@@ -8,30 +8,29 @@ import {Note} from "./models/Note";
 import {addNoteAction, getNotesAction} from "./store/actions";
 import DraggableNote from "./components/DraggableNote";
 
-function App() {
 
-    const notes = useSelector((state: State) => state.notes)
+function App() {
+    const notesState = useSelector((state: State) => state.notes)
     const dispatch = useDispatch<AppDispatch>()
 
     useEffect(() => {
         const notesJSON: string | null = localStorage.getItem(STORAGE_KEY)
         if (notesJSON) {
-            const notesArr: Note[] = JSON.parse(notesJSON)
-            dispatch(getNotesAction(notesArr))
+            const notesObj: State = JSON.parse(notesJSON)
+            dispatch(getNotesAction(notesObj))
         }
     }, [])
 
     useEffect(() => {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(notes))
-    }, [notes])
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(notesState))
+    }, [notesState])
 
 
     function addNewNote() {
         dispatch(addNoteAction())
     }
 
-
-    return <Box width={'fit-content'} overflow={"auto"}>
+    return <Box width={'100%'} height={'100vh'} overflow={"hidden"}>
         <Button
             onClick={addNewNote}
             variant={"outlined"}
@@ -48,10 +47,9 @@ function App() {
             <AddIcon/>
             <Typography>Add Note</Typography>
         </Button>
-
-        {notes.map((note: Note) =>
-            <DraggableNote key={note.id} note={note}/>
-        )}
+            {notesState.notes.map((note: Note) =>
+                <DraggableNote key={note.id} note={note}/>
+            )}
     </Box>
 }
 

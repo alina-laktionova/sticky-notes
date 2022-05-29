@@ -1,6 +1,5 @@
 import {configureStore} from '@reduxjs/toolkit'
-import notesReducer from "./notesReducer";
-import {Note} from "../models/Note";
+import notesReducer, {NotesState} from "./notesReducer";
 
 
 export const store = configureStore({
@@ -9,6 +8,5 @@ export const store = configureStore({
     }
 })
 
-export type State = { notes: Note[] }
-
+export type State = { notes: NotesState }
 export type AppDispatch = typeof store.dispatch

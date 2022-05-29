@@ -6,7 +6,8 @@ export interface Note {
     title: string,
     text: string,
     size: Size,
-    position: Position
+    position: Position,
+    zIndex: number,
 }
 
 export const noteInitState = {
@@ -14,5 +15,6 @@ export const noteInitState = {
     title: 'Sticky Note',
     text: '',
     size: {width: '200px', height: '200px'},
-    position: {x: 100, y: 100}
+    position: {x: 100, y: 100},
+    zIndex: 1
 }

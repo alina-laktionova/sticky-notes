@@ -10,7 +10,14 @@ import {Size} from "../models/Size";
 import {Note} from "../models/Note";
 import {useDispatch} from "react-redux";
 import {AppDispatch} from "../store/store";
-import {deleteNoteAction, dragNoteAction, editTextAction, editTitleAction, resizeNoteAction} from "../store/actions";
+import {
+    deleteNoteAction,
+    dragNoteAction,
+    editTextAction,
+    editTitleAction,
+    resizeNoteAction,
+    showOverNotesAction
+} from "../store/actions";
 
 
 type Props = {
@@ -41,12 +48,14 @@ export default function DraggableNote(props: Props) {
     }
 
     useEffect(() => {
-        console.log(size)
         dispatch(resizeNoteAction(note.id, size))
     }, [size])
 
+    function showOverOtherNotes() {
+        dispatch(showOverNotesAction(note.id))
+    }
+
     function handlerOnStopDrag(e: DraggableEvent, data: DraggableData) {
-        console.log('final position X: ' + data.x + ' Y: ' + data.y);
         dispatch(dragNoteAction(note.id, {x: data.x, y: data.y}))
     }
 
@@ -69,10 +78,13 @@ export default function DraggableNote(props: Props) {
     }
 
     return <Draggable nodeRef={nodeRef}
+                      onStart={showOverOtherNotes}
                       onStop={handlerOnStopDrag}
                       defaultPosition={note.position}
+                      bounds="parent"
                       handle=".handle">
         <Paper ref={nodeRef} elevation={5}
+               onClick={showOverOtherNotes}
                sx={{
                    position: 'absolute',
                    resize: 'both',
@@ -84,7 +96,8 @@ export default function DraggableNote(props: Props) {
                    display: 'flex',
                    flexDirection: 'column',
                    backgroundColor: '#fafad2',
-                   padding: '8px'
+                   padding: '8px',
+                   zIndex: note.zIndex,
                }}>
             <Box sx={{
                 display: 'flex',
@@ -107,7 +120,7 @@ export default function DraggableNote(props: Props) {
                 {editTitleMode
                     ? <Input defaultValue={note.title}
                              onChange={handleChangeTitle}
-                             sx={{input: {textAlign: "center"}}}/>
+                             sx={{input: {textAlign: "center", padding: '0px'}}}/>
                     : <Typography className={'handle'}
                                   width={'100%'}
                                   textAlign={'center'}
@@ -123,11 +136,10 @@ export default function DraggableNote(props: Props) {
             </Box>
 
             <Box height={'100%'} width={'100%'}>
-                    <textarea className={'sticker-text'}
-                              defaultValue={note.text}
-                              onChange={handleChangeText}/>
+                <textarea className={'sticker-text'}
+                          defaultValue={note.text}
+                          onChange={handleChangeText}/>
             </Box>
-
         </Paper>
     </Draggable>
 }

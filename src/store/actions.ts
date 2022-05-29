@@ -1,13 +1,22 @@
-import {Note} from "../models/Note";
-import {ADD_NOTE, EDIT_TEXT, EDIT_TITLE, DELETE_NOTE, DRAG_NOTE, GET_NOTES, RESIZE_NOTE} from "./actionTypes";
+import {
+    ADD_NOTE,
+    EDIT_TEXT,
+    EDIT_TITLE,
+    DELETE_NOTE,
+    DRAG_NOTE,
+    GET_NOTES,
+    RESIZE_NOTE,
+    SHOW_OVER_NOTES
+} from "./actionTypes";
 import {Position} from "../models/Position";
 import {Size} from "../models/Size";
+import {State} from "./store";
 
-export function getNotesAction(notes: Note[]) {
+export function getNotesAction(notesState: State) {
     return {
         type: GET_NOTES,
         payload: {
-            notes: notes
+            notesState: notesState
         }
     }
 }
@@ -63,6 +72,15 @@ export function editTextAction(id: string, text: string) {
         payload: {
             id: id,
             text: text
+        }
+    }
+}
+
+export function showOverNotesAction(id: string) {
+    return {
+        type: SHOW_OVER_NOTES,
+        payload: {
+            id: id
         }
     }
 }
