@@ -6,33 +6,34 @@ import {
     DRAG_NOTE,
     GET_NOTES,
     RESIZE_NOTE,
-    SHOW_OVER_NOTES
-} from "./actionTypes";
-import {Position} from "../models/Position";
-import {Size} from "../models/Size";
-import {State} from "./store";
+    SHOW_OVER_NOTES,
+    CHANGE_COLOR,
+} from './actionTypes'
+import {Position} from '../models/Position'
+import {Size} from '../models/Size'
+import {State} from './store'
 
 export function getNotesAction(notesState: State) {
     return {
         type: GET_NOTES,
         payload: {
-            notesState: notesState
-        }
+            notesState: notesState,
+        },
     }
 }
 
 export function addNoteAction() {
     return {
-        type: ADD_NOTE
+        type: ADD_NOTE,
     }
 }
 
-export function deleteNoteAction(id :string) {
+export function deleteNoteAction(id: string) {
     return {
         type: DELETE_NOTE,
         payload: {
-            id: id
-        }
+            id: id,
+        },
     }
 }
 
@@ -41,8 +42,8 @@ export function dragNoteAction(id: string, position: Position) {
         type: DRAG_NOTE,
         payload: {
             id: id,
-            position: position
-        }
+            position: position,
+        },
     }
 }
 
@@ -51,8 +52,8 @@ export function resizeNoteAction(id: string, size: Size) {
         type: RESIZE_NOTE,
         payload: {
             id: id,
-            size: size
-        }
+            size: size,
+        },
     }
 }
 
@@ -61,8 +62,8 @@ export function editTitleAction(id: string, title: string) {
         type: EDIT_TITLE,
         payload: {
             id: id,
-            title: title
-        }
+            title: title,
+        },
     }
 }
 
@@ -71,8 +72,8 @@ export function editTextAction(id: string, text: string) {
         type: EDIT_TEXT,
         payload: {
             id: id,
-            text: text
-        }
+            text: text,
+        },
     }
 }
 
@@ -80,7 +81,17 @@ export function showOverNotesAction(id: string) {
     return {
         type: SHOW_OVER_NOTES,
         payload: {
-            id: id
-        }
+            id: id,
+        },
+    }
+}
+
+export function changeColorAction(id: string, color: string) {
+    return {
+        type: CHANGE_COLOR,
+        payload: {
+            id: id,
+            color: color,
+        },
     }
 }

@@ -1,10 +1,19 @@
-# Sticky notes
+# Sticky Notes
 
-Draggable and resizable notes
+Draggable and Resizable notes with Color Picker
 
 Demo: https://alina-laktionova.github.io/sticky-notes/
 
-used React Draggable and Resize Observer
+Used technologies:
+- TypeScript
+- React
+- Redux
+- Material UI
+- uuid
+- Prettier
+- React Draggable
+- Resize Observer
+- React Color
 
 
 
