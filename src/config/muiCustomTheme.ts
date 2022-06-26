@@ -9,7 +9,7 @@ export const theme = createTheme({
     },
 })
 
-export const StyledPaper = styled(Paper)<PaperProps>(({theme}) => ({
+export const StyledPaper = styled(Paper)<PaperProps>(() => ({
     position: 'absolute',
     resize: 'both',
     overflow: 'auto',
@@ -20,10 +20,4 @@ export const StyledPaper = styled(Paper)<PaperProps>(({theme}) => ({
     display: 'flex',
     flexDirection: 'column',
     padding: '8px',
-    [theme.breakpoints.down('lg')]: {
-        '&::-webkit-resizer': {
-            border: '3px double',
-            borderColor: 'transparent black black transparent',
-        },
-    },
 }))

@@ -101,15 +101,7 @@ export default function DraggableNote(props: Props) {
                     height: note.size.height,
                     zIndex: note.zIndex,
                 }}>
-                <Box
-                    display="flex"
-                    justifyContent="space-between"
-                    alignItems="center"
-                    width="100%"
-                    maxWidth="100%"
-                    sx={{
-                        cursor: 'move',
-                    }}>
+                <Box display="flex" justifyContent="space-between" alignItems="center" width="100%" maxWidth="100%">
                     <ColorPicker currColor={note.bgColor} setCurrColor={handleChangeColor} />
                     {editTitleMode ? (
                         <IconButton size={'small'} onClick={editTitle}>
@@ -132,7 +124,10 @@ export default function DraggableNote(props: Props) {
                             width={'100%'}
                             textAlign={'center'}
                             justifyContent={'center'}
-                            overflow={'hidden'}>
+                            overflow={'hidden'}
+                            sx={{
+                                cursor: 'move',
+                            }}>
                             {note.title}
                         </Typography>
                     )}
